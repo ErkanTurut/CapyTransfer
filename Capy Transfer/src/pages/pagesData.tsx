@@ -15,6 +15,20 @@ const pagesData: routerType[] = [
     path: "/about",
     component: <About />,
     title: "About",
+    children: [
+      {
+        path: "/about/child1",
+        component: <About />,
+        title: "Child 1",
+        show: false,
+      },
+      {
+        path: "/about/child2",
+        component: <About />,
+        title: "Child 2",
+        show: false,
+      },
+    ],
     icon: "",
     show: true,
   },
