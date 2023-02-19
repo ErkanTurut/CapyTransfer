@@ -17,7 +17,6 @@ import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 
-import ThemeContextWrapper from "./contexts/theme/wrapper";
 const { chains, provider } = configureChains(
   [mainnet, polygon, optimism, arbitrum],
   [publicProvider()]
@@ -35,22 +34,20 @@ const wagmiClient = createClient({
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <ThemeContextWrapper>
-    <React.StrictMode>
-      <WagmiConfig client={wagmiClient}>
-        <RainbowKitProvider
-          chains={chains}
-          theme={lightTheme({
-            accentColor: "#3763f4",
-            accentColorForeground: "white",
-            borderRadius: "medium",
-            fontStack: "system",
-            overlayBlur: "small",
-          })}
-        >
-          <App />
-        </RainbowKitProvider>
-      </WagmiConfig>
-    </React.StrictMode>
-  </ThemeContextWrapper>
+  <React.StrictMode>
+    <WagmiConfig client={wagmiClient}>
+      <RainbowKitProvider
+        chains={chains}
+        theme={lightTheme({
+          accentColor: "#3763f4",
+          accentColorForeground: "white",
+          borderRadius: "medium",
+          fontStack: "system",
+          overlayBlur: "small",
+        })}
+      >
+        <App />
+      </RainbowKitProvider>
+    </WagmiConfig>
+  </React.StrictMode>
 );
