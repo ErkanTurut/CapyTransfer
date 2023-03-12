@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 //import "./scss/styles.scss";
-import "./scss/bootstrap.scss";
+// import "./scss/bootstrap.scss";
 import "@rainbow-me/rainbowkit/styles.css";
 
 import {
@@ -12,6 +12,10 @@ import {
   lightTheme,
   midnightTheme,
 } from "@rainbow-me/rainbowkit";
+
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import theme from "./theme/theme";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
@@ -46,7 +50,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           overlayBlur: "small",
         })}
       >
-        <App />
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   </React.StrictMode>

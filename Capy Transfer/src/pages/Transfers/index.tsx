@@ -1,6 +1,6 @@
 const Transfers = () => {
   return (
-    <div>
+    <div style={{ marginBottom: "1500px" }}>
       <h1>Transfers</h1>
     </div>
   );
