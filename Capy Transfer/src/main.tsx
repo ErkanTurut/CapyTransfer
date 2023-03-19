@@ -1,59 +1,61 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-//import "./scss/styles.scss";
-// import "./scss/bootstrap.scss";
+
+//styles
+import "./scss/styles.scss";
 import "@rainbow-me/rainbowkit/styles.css";
 
+//wallet
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { WagmiConfig } from "wagmi";
+import wagmiClient, { chains } from "./components/wallet/wagmi.config";
+
+//redux
+import authReducer from "./state";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
 import {
-  getDefaultWallets,
-  RainbowKitProvider,
-  darkTheme,
-  lightTheme,
-  midnightTheme,
-} from "@rainbow-me/rainbowkit";
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { PersistGate } from "redux-persist/integration/react";
 
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import { createTheme } from "@mui/material/styles";
-import theme from "./theme/theme";
-import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
-import { alchemyProvider } from "wagmi/providers/alchemy";
-import { publicProvider } from "wagmi/providers/public";
+const persistConfig = {
+  key: "root",
+  version: 1,
+  storage,
+};
 
-const { chains, provider } = configureChains(
-  [mainnet, polygon, optimism, arbitrum],
-  [publicProvider()]
-);
+const persistedReducer = persistReducer(persistConfig, authReducer);
 
-const { connectors } = getDefaultWallets({
-  appName: "My RainbowKit App",
-  chains,
-});
-
-const wagmiClient = createClient({
-  autoConnect: true,
-  connectors,
-  provider,
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider
-        chains={chains}
-        theme={lightTheme({
-          accentColor: "#3763f4",
-          accentColorForeground: "white",
-          borderRadius: "medium",
-          fontStack: "system",
-          overlayBlur: "small",
-        })}
-      >
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistStore(store)}>
+        <WagmiConfig client={wagmiClient}>
+          <RainbowKitProvider chains={chains}>
+            <App />
+          </RainbowKitProvider>
+        </WagmiConfig>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );

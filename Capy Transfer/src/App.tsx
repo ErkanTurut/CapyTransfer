@@ -1,15 +1,25 @@
 import { BrowserRouter } from "react-router-dom";
 import Router from "./pages/router";
+import { AuthState } from "@/types/states.types";
 
-import NavBar from "./components/navBar/navBar";
+import { useMemo } from "react";
+import { useSelector } from "react-redux/es/exports";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { themeSettings } from "./theme/theme";
 
 function App() {
+  const mode = useSelector((state: AuthState) => state.mode);
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+
   return (
     <div className="App">
       <>
         <BrowserRouter>
-          <NavBar />
-          <Router />
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Router />
+          </ThemeProvider>
         </BrowserRouter>
       </>
     </div>
