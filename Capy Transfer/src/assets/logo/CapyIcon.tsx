@@ -1,9 +1,9 @@
 import React from "react";
 
-interface Props {
+type Props = {
   color: "light" | "dark";
   size: "s" | "m" | "l" | "xl";
-}
+};
 
 //create a map of sizes
 const sizes = {
