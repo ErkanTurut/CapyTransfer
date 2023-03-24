@@ -11,6 +11,11 @@ export default defineConfig({
       include: ["node_modules/**/*.js", new RegExp("node_modules/.vite/.*js")],
     }),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 
   build: {
     rollupOptions: {
