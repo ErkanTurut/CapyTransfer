@@ -1,4 +1,10 @@
 import { ThemeMode } from "@/types/states.types";
+import "@fontsource/karla";
+
+import "@fontsource/poppins/300.css";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/700.css";
 // color design tokens export
 export const colorTokens = {
   grey: {
@@ -75,30 +81,30 @@ export const themeSettings = (mode: ThemeMode) => {
           }),
     },
     typography: {
-      fontFamily: ["Rubik", "sans-serif"].join(","),
+      fontFamily: ["poppins, karla"].join(","),
       fontSize: 12,
       h1: {
-        fontFamily: ["Rubik", "sans-serif"].join(","),
+        fontFamily: ["poppins"].join(","),
         fontSize: 40,
       },
       h2: {
-        fontFamily: ["Rubik", "sans-serif"].join(","),
+        fontFamily: ["poppins"].join(","),
         fontSize: 32,
       },
       h3: {
-        fontFamily: ["Rubik", "sans-serif"].join(","),
+        fontFamily: ["poppins"].join(","),
         fontSize: 24,
       },
       h4: {
-        fontFamily: ["Rubik", "sans-serif"].join(","),
+        fontFamily: ["poppins"].join(","),
         fontSize: 20,
       },
       h5: {
-        fontFamily: ["Rubik", "sans-serif"].join(","),
+        fontFamily: ["poppins"].join(","),
         fontSize: 16,
       },
       h6: {
-        fontFamily: ["Rubik", "sans-serif"].join(","),
+        fontFamily: ["poppins"].join(","),
         fontSize: 14,
       },
     },
