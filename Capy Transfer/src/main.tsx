@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 
 //styles
-import "./scss/styles.scss";
+import "./theme/styles.scss";
 import "@rainbow-me/rainbowkit/styles.css";
 
 //wallet
