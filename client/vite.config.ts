@@ -11,6 +11,17 @@ export default defineConfig({
       include: ["node_modules/**/*.js", new RegExp("node_modules/.vite/.*js")],
     }),
   ],
+
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

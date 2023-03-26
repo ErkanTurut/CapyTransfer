@@ -2,7 +2,7 @@ import { BrowserRouter } from "react-router-dom";
 import Router from "./routes/router";
 import { AuthState } from "@/types/states.types";
 
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { useSelector } from "react-redux/es/exports";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
