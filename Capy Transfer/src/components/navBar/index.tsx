@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useNavigate, useLocation } from "react-router-dom";
 import FlexBetween from "../utils/FlexBetween";
-import pagesData from "../../pages/pagesData";
+import pagesData from "../../routes/pagesData";
 
 import CapyIcon from "../../assets/logo/CapyIcon";
 //import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
@@ -62,7 +62,7 @@ const NavBar = () => {
             onClick={() => navigate("/")}
             sx={{
               "&:hover": {
-                color: theme.palette.primary.light,
+                color: theme.palette.neutral.main,
                 cursor: "pointer",
               },
             }}

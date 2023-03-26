@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import Router from "./pages/router";
+import Router from "./routes/router";
 import { AuthState } from "@/types/states.types";
 
 import { useMemo } from "react";

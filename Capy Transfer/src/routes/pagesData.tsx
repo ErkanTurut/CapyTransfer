@@ -1,7 +1,7 @@
 import { routerType } from "../types/router.types";
-import About from "./About";
-import Home from "./Home";
-import Transfers from "./Transfers";
+import About from "../pages/About";
+import Home from "../pages/Home";
+import Transfers from "../pages/Transfers";
 
 const pagesData: routerType[] = [
   {
