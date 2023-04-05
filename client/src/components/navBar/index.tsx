@@ -1,12 +1,11 @@
 import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useNavigate, useLocation } from "react-router-dom";
 import FlexBetween from "../utils/FlexBetween";
 import pagesData from "../../routes/pagesData";
+import { WalletConnectButton } from "../wallet/connectButton";
 
 import CapyIcon from "../../assets/logo/CapyIcon";
-//import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 
 import {
   Menu,
@@ -33,6 +32,7 @@ import {
   FormControl,
   useTheme,
   useMediaQuery,
+  Button,
 } from "@mui/material";
 
 const NavBar = () => {
@@ -45,88 +45,105 @@ const NavBar = () => {
   const isNonMobileScreens = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <FlexBetween
-      padding="0.5rem"
-      backgroundColor={theme.palette.background.paper}
-    >
-      {/* logo */}
-      <FlexBetween gap="0.5rem">
-        <CapyIcon
-          color={theme.palette.mode === "dark" ? "light" : "dark"}
-          size="m"
-        />
-        {isNonMobileScreens && (
-          <Typography
-            fontWeight="bold"
-            fontSize="clamp(1rem, 2rem, 2.25rem)"
-            onClick={() => navigate("/")}
-            sx={{
-              "&:hover": {
-                color: theme.palette.neutral.main,
-                cursor: "pointer",
-              },
-            }}
-          >
-            CAPY
-          </Typography>
-        )}
-      </FlexBetween>
-
-      {/* DESKTOP NAV */}
-      {isNonMobileScreens ? (
-        // <FlexBetween gap="1.75rem">
-        //   {pagesData
-        //     .filter((e) => e.show == true)
-        //     .map((page, index) => {
-        //       return (
-        //         <Fragment key={index}>
-        //           <Typography
-        //             fontWeight="bold"
-        //             fontSize="clamp(1rem, 2rem, 2.25rem)"
-        //             color="primary"
-        //             onClick={() => navigate(page.path)}
-        //             sx={{
-        //               "&:hover": {
-        //                 color: theme.palette.primary.light,
-        //                 cursor: "pointer",
-        //               },
-        //             }}
-        //           >
-        //             {page.title}
-        //           </Typography>
-        //         </Fragment>
-        //       );
-        //     })}
-        // </FlexBetween>
-        <FlexBetween gap="1rem">
-          <IconButton onClick={() => dispatch(setMode())}>
-            {theme.palette.mode === "dark" ? (
-              <LightMode sx={{ fontSize: "25px" }} />
-            ) : (
-              <DarkMode
-                sx={{ color: theme.palette.common.black, fontSize: "25px" }}
+    <>
+      <AppBar
+        component="nav"
+        color="transparent"
+        position="fixed"
+        sx={{ width: "100%" }}
+      >
+        <FlexBetween padding="0.5rem">
+          {/* logo */}
+          <FlexBetween gap="3rem">
+            <Box
+              component={Link}
+              to="/"
+              gap="0.5rem"
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "start",
+              }}
+            >
+              <CapyIcon
+                color={theme.palette.mode === "dark" ? "light" : "dark"}
+                size="m"
               />
+              <Typography
+                fontWeight="bold"
+                color="default"
+                fontSize="clamp(1rem, 2rem, 2.25rem)"
+                sx={{
+                  "&:hover": {
+                    color: theme.palette.neutral.main,
+                    cursor: "pointer",
+                  },
+                }}
+              >
+                CAPY
+              </Typography>
+            </Box>
+            {isNonMobileScreens && (
+              <FlexBetween gap="1.5rem">
+                {pagesData
+                  .filter((e) => e.show == true)
+                  .map((page, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <Typography
+                          fontWeight={
+                            location.pathname === page.path ? "bold" : "regular"
+                          }
+                          color={
+                            location.pathname === page.path
+                              ? theme.palette.neutral.dark
+                              : ""
+                          }
+                          component={Link}
+                          fontSize="clamp(0.5rem, 1rem, 1.25rem)"
+                          to={page.path}
+                          sx={{
+                            "&:hover": {
+                              color: theme.palette.neutral.main,
+                              cursor: "pointer",
+                            },
+                          }}
+                        >
+                          {page.title}
+                        </Typography>
+                      </Fragment>
+                    );
+                  })}
+              </FlexBetween>
             )}
-          </IconButton>
-          <Message sx={{ fontSize: "25px" }} />
-          <Notifications sx={{ fontSize: "25px" }} />
-          <Help sx={{ fontSize: "25px" }} />
-          <ConnectButton
-            chainStatus="none"
-            accountStatus="avatar"
-            showBalance={false}
-          />
+          </FlexBetween>
+
+          {/* DESKTOP NAV */}
+          {isNonMobileScreens ? (
+            <>
+              <FlexBetween gap="0.2rem">
+                <WalletConnectButton />
+
+                <IconButton
+                  onClick={() => dispatch(setMode())}
+                  sx={{ borderRadius: "8px" }}
+                >
+                  {theme.palette.mode === "dark" ? <LightMode /> : <DarkMode />}
+                </IconButton>
+              </FlexBetween>
+            </>
+          ) : (
+            <IconButton
+              onClick={() => setIsMenuOpen(true)}
+              sx={{ display: { xs: "flex", md: "none" }, ml: 1 }}
+            >
+              <Menu />
+            </IconButton>
+          )}
         </FlexBetween>
-      ) : (
-        <IconButton
-          color="primary"
-          onClick={() => setIsMenuOpen(true)}
-          sx={{ display: { xs: "flex", md: "none" }, ml: 1 }}
-        >
-          <Menu />
-        </IconButton>
-      )}
-    </FlexBetween>
+      </AppBar>
+      <Box sx={{ pb: "6rem" }} />
+    </>
   );
 };
 

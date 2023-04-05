@@ -1,7 +1,11 @@
 import Header from "./Header";
-
+import { Paper, Box, Grid } from "@mui/material";
 const Home = () => {
-  return <h1>Home</h1>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 };
 
 export default Home;
