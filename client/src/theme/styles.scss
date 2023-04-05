@@ -3,10 +3,21 @@
 @tailwind utilities;
 
 body::-webkit-scrollbar {
-  width: 5px; /* width of the entire scrollbar */
+  width: 8px; /* width of the entire scrollbar */
+  background: #00000000;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: rgb(95, 95, 95); /* color of the scroll thumb */
-  border-radius: 2px; /* roundness of the scroll thumb */
+  //   background-color: rgb(95, 95, 95); /* color of the scroll thumb */
+  //   border-radius: 2px; /* roundness of the scroll thumb */
+  background-color: rgba(179, 179, 179, 0.5);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: rgba(232, 133, 133, 0);
+}
+
+body::-webkit-scrollbar-track:hover {
+  background-color: rgba(255, 255, 255, 0);
 }
