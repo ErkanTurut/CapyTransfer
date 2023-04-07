@@ -1,10 +1,10 @@
 import React, { useState, Fragment } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate, useLocation } from "react-router-dom";
+
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import FlexBetween from "../utils/FlexBetween";
 import pagesData from "../../routes/pagesData";
 import { WalletConnectButton } from "../wallet/connectButton";
-
+import NavDrawer from "./navDrawer";
 import CapyIcon from "../../assets/logo/CapyIcon";
 
 import {
@@ -36,7 +36,7 @@ import {
 } from "@mui/material";
 
 const NavBar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -133,12 +133,15 @@ const NavBar = () => {
               </FlexBetween>
             </>
           ) : (
-            <IconButton
-              onClick={() => setIsMenuOpen(true)}
-              sx={{ display: { xs: "flex", md: "none" }, ml: 1 }}
-            >
-              <Menu />
-            </IconButton>
+            <>
+              <IconButton
+                onClick={() => setOpen(!open)}
+                sx={{ display: { xs: "flex", md: "none" }, ml: 1 }}
+              >
+                <Menu />
+              </IconButton>
+              <NavDrawer open={open} setOpen={setOpen} />
+            </>
           )}
         </FlexBetween>
       </AppBar>
