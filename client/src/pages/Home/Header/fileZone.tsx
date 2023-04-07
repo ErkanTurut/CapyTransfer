@@ -1,20 +1,47 @@
 import React from "react";
-import { Paper, Box, Typography, Button, Grid } from "@mui/material";
+import {
+  Paper,
+  Box,
+  Typography,
+  Button,
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  CardActions,
+} from "@mui/material";
 
 import FlexBetween from "@/components/utils/FlexBetween";
 const fileZone = () => {
   return (
     <Box
       sx={{
-        width: 300,
-        height: 300,
-        backgroundColor: "primary.dark",
-        "&:hover": {
-          backgroundColor: "primary.main",
-          opacity: [0.9, 0.8, 0.7],
-        },
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
-    />
+    >
+      <Card sx={{ maxWidth: 345 }}>
+        <CardMedia
+          sx={{ height: 140 }}
+          image="https://images.pexels.com/photos/9750174/pexels-photo-9750174.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          title="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Lizard
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Lizards are a widespread group of squamate reptiles, with over 6,000
+            species, ranging across all continents except Antarctica
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">Share</Button>
+          <Button size="small">Learn More</Button>
+        </CardActions>
+      </Card>
+    </Box>
   );
 };
 
