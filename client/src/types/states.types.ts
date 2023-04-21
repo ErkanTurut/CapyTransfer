@@ -1,7 +1,9 @@
-export type ThemeMode = "light" | "dark";
+export type ThemeMode = boolean;
 
-export interface AuthState {
-  mode: ThemeMode;
-  user: any;
-  files: any[];
+export interface ThemeState {
+  isDarkTheme: ThemeMode;
+}
+
+export interface RootState {
+  theme: ThemeState;
 }
