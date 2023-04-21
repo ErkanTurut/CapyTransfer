@@ -1,17 +1,22 @@
 import { BrowserRouter } from "react-router-dom";
 import Router from "./routes/router";
-import { AuthState } from "@/types/states.types";
+import { RootState } from "@/types/states.types";
 
 import { useMemo, useEffect } from "react";
 import { useSelector } from "react-redux/es/exports";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider, Container } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme/theme";
 import NavBar from "./components/navBar";
 
 function App() {
-  const mode = useSelector((state: AuthState) => state.mode);
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  const state = useSelector((state: RootState) => state);
+
+  const theme = useMemo(
+    () =>
+      createTheme(themeSettings(state.theme.isDarkTheme ? "dark" : "light")),
+    [state]
+  );
 
   return (
     <div className="App">
@@ -20,7 +25,9 @@ function App() {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <NavBar />
-            <Router />
+            <Container maxWidth="xl">
+              <Router />
+            </Container>
           </ThemeProvider>
         </BrowserRouter>
       </>
