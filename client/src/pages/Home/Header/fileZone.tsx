@@ -21,7 +21,7 @@ const fileZone = () => {
         alignItems: "center",
       }}
     >
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 500 }}>
         <CardMedia
           sx={{ height: 140 }}
           image="https://images.pexels.com/photos/9750174/pexels-photo-9750174.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -37,8 +37,12 @@ const fileZone = () => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
+          <Button size="small" variant="contained" color="neutral">
+            Share
+          </Button>
+          <Button size="small" variant="contained" color="primary">
+            Learn More
+          </Button>
         </CardActions>
       </Card>
     </Box>

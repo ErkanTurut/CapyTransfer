@@ -4,7 +4,11 @@ import { Paper, Box, Typography, Button, Grid } from "@mui/material";
 const hero = () => {
   return (
     <>
-      <Typography variant="h2" component="h1">
+      <Typography
+        className="linear-wipe prevent-select"
+        variant="h2"
+        component="h1"
+      >
         Distributed transfer
       </Typography>
       <Typography variant="body1">
