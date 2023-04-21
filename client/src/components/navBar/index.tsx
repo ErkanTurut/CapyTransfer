@@ -18,7 +18,7 @@ import {
 } from "@mui/icons-material";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setMode } from "@/state";
+import { toggleTheme } from "@/state/reducers/themeReducer";
 
 import {
   AppBar,
@@ -75,7 +75,7 @@ const NavBar = () => {
                 fontSize="clamp(1rem, 2rem, 2.25rem)"
                 sx={{
                   "&:hover": {
-                    color: theme.palette.neutral.main,
+                    color: theme.palette.neutral.medium,
                     cursor: "pointer",
                   },
                 }}
@@ -96,7 +96,7 @@ const NavBar = () => {
                           }
                           color={
                             location.pathname === page.path
-                              ? theme.palette.neutral.dark
+                              ? theme.palette.neutral.main
                               : ""
                           }
                           component={Link}
@@ -104,7 +104,7 @@ const NavBar = () => {
                           to={page.path}
                           sx={{
                             "&:hover": {
-                              color: theme.palette.neutral.main,
+                              color: theme.palette.neutral.medium,
                               cursor: "pointer",
                             },
                           }}
@@ -125,7 +125,7 @@ const NavBar = () => {
                 <WalletConnectButton />
 
                 <IconButton
-                  onClick={() => dispatch(setMode())}
+                  onClick={() => dispatch(toggleTheme())}
                   sx={{ borderRadius: "8px" }}
                 >
                   {theme.palette.mode === "dark" ? <LightMode /> : <DarkMode />}
