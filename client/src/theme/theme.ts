@@ -1,4 +1,3 @@
-import { ThemeMode } from "@/types/states.types";
 import { colorsPalette } from "./palette";
 import "@fontsource/karla";
 
@@ -7,8 +6,8 @@ import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/500.css";
 import "@fontsource/poppins/700.css";
 // color design tokens export
-
-export const themeSettings = (mode: ThemeMode) => {
+export type ThemeType = "light" | "dark";
+export const themeSettings = (mode: ThemeType) => {
   return {
     palette: {
       mode: mode,
@@ -26,11 +25,11 @@ export const themeSettings = (mode: ThemeMode) => {
               light: colorsPalette.secondary[800],
             },
             neutral: {
-              dark: colorsPalette.grey[100],
-              main: colorsPalette.grey[200],
-              mediumMain: colorsPalette.grey[300],
-              medium: colorsPalette.grey[400],
+              dark: colorsPalette.grey[200],
+              main: colorsPalette.grey[0],
+              medium: colorsPalette.grey[200],
               light: colorsPalette.grey[700],
+              contrastText: colorsPalette.grey[1000],
             },
             grey: {
               50: colorsPalette.grey[50],
@@ -66,14 +65,26 @@ export const themeSettings = (mode: ThemeMode) => {
               secondary: colorsPalette.grey[600],
             },
             action: {
-              active: colorsPalette.grey[600],
+              active: colorsPalette.grey[700],
             },
             neutral: {
               dark: colorsPalette.grey[700],
-              main: colorsPalette.grey[500],
-              mediumMain: colorsPalette.grey[400],
-              medium: colorsPalette.grey[400],
-              light: colorsPalette.grey[50],
+              main: colorsPalette.grey[900],
+              medium: colorsPalette.grey[600],
+              light: colorsPalette.grey[200],
+              contrastText: colorsPalette.grey[0],
+            },
+            grey: {
+              50: colorsPalette.grey[50],
+              100: colorsPalette.grey[100],
+              200: colorsPalette.grey[200],
+              300: colorsPalette.grey[300],
+              400: colorsPalette.grey[400],
+              500: colorsPalette.grey[500],
+              600: colorsPalette.grey[600],
+              700: colorsPalette.grey[700],
+              800: colorsPalette.grey[800],
+              900: colorsPalette.grey[900],
             },
             background: {
               default: colorsPalette.grey[0],
