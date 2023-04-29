@@ -43,7 +43,7 @@ const Header = () => {
         item
         xs={4}
         sm={9}
-        md={5}
+        md={4}
         sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
       >
         <FileZone />

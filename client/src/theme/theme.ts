@@ -32,6 +32,7 @@ export const themeSettings = (mode: ThemeType) => {
               contrastText: colorsPalette.grey[1000],
             },
             grey: {
+              0: colorsPalette.grey[0],
               50: colorsPalette.grey[50],
               100: colorsPalette.grey[100],
               200: colorsPalette.grey[200],
@@ -88,6 +89,7 @@ export const themeSettings = (mode: ThemeType) => {
             },
             background: {
               default: colorsPalette.grey[0],
+              paper: colorsPalette.grey[100],
               alt: colorsPalette.grey[25],
             },
           }),
