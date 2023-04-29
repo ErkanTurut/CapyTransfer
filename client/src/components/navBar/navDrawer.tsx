@@ -25,7 +25,7 @@ import {
 } from "@mui/material";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setMode } from "@/state";
+
 import pagesData from "../../routes/pagesData";
 const NavDrawer = (props: any) => {
   const { open, setOpen } = props;
@@ -70,7 +70,10 @@ const NavDrawer = (props: any) => {
             <Fragment key={index}>
               <List>
                 <ListItemButton component={Link} to={page.path}>
-                  <ListItemText primary={page.title} />
+                  <ListItemText
+                    primary={page.title}
+                    onClick={() => setOpen(false)}
+                  />
                 </ListItemButton>
               </List>
             </Fragment>
@@ -81,27 +84,3 @@ const NavDrawer = (props: any) => {
 };
 
 export default NavDrawer;
-
-{
-  /* <Typography
-fontWeight={
-  location.pathname === page.path ? "bold" : "regular"
-}
-color={
-  location.pathname === page.path
-    ? theme.palette.neutral.dark
-    : ""
-}
-component={Link}
-fontSize="clamp(0.5rem, 1rem, 1.25rem)"
-to={page.path}
-sx={{
-  "&:hover": {
-    color: theme.palette.neutral.main,
-    cursor: "pointer",
-  },
-}}
->
-{page.title}
-</Typography> */
-}

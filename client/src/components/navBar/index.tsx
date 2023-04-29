@@ -18,7 +18,7 @@ import {
 } from "@mui/icons-material";
 
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTheme } from "@/state/reducers/themeReducer";
+import { toggleTheme } from "@/state/theme/themeReducer";
 
 import {
   AppBar,
@@ -40,7 +40,6 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
   const theme = useTheme();
   const isNonMobileScreens = useMediaQuery(theme.breakpoints.up("md"));
 

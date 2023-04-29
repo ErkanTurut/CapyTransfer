@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import {
   Paper,
   Box,
@@ -7,41 +7,86 @@ import {
   Grid,
   Card,
   CardContent,
-  CardMedia,
   CardActions,
+  Stepper,
+  Step,
+  StepLabel,
+  styled,
 } from "@mui/material";
 
+import Dropzone from "@/components/fileZone";
+import { useSelector } from "react-redux/es/exports";
+import { RootState } from "@/state";
 import FlexBetween from "@/components/utils/FlexBetween";
+import { next } from "@/state/fileZone/fileZoneReducer";
+
 const fileZone = () => {
+  const state = useSelector((state: RootState) => state);
+  const fileZoneComponents = [
+    {
+      key: 1,
+      component: <Dropzone />,
+      label: "Upload",
+    },
+    {
+      key: 2,
+      component: <Dropzone />,
+      label: "Settings",
+    },
+    {
+      key: 3,
+      component: <Dropzone />,
+      label: "Send",
+    },
+  ];
   return (
     <Box
       sx={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        width: "100%",
       }}
     >
-      <Card sx={{ maxWidth: 500 }}>
-        <CardMedia
-          sx={{ height: 140 }}
-          image="https://images.pexels.com/photos/9750174/pexels-photo-9750174.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          title="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
+      <Card
+        sx={{
+          width: "100%",
+          maxWidth: 500,
+          boxShadow: 0,
+          border: 2,
+          borderColor: "neutral.light",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <CardContent sx={{ height: 300 }}>
+          <Dropzone />
         </CardContent>
-        <CardActions>
-          <Button size="small" variant="contained" color="neutral">
-            Share
+        <CardActions
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Button size="small" variant="outlined" color="neutral">
+            back
           </Button>
+          <Stepper alternativeLabel activeStep={1}>
+            <Step key={1} completed={false}>
+              <StepLabel>Upload</StepLabel>
+            </Step>
+            <Step key={2}>
+              <StepLabel>Settings</StepLabel>
+            </Step>
+            <Step key={3}>
+              <StepLabel>Send</StepLabel>
+            </Step>
+          </Stepper>
+
           <Button size="small" variant="contained" color="primary">
-            Learn More
+            next
           </Button>
         </CardActions>
       </Card>
