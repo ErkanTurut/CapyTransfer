@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import Router from "./routes/router";
-import { RootState } from "@/types/states.types";
+import { RootState } from "@/state";
 
 import { useMemo, useEffect } from "react";
 import { useSelector } from "react-redux/es/exports";
@@ -11,7 +11,7 @@ import NavBar from "./components/navBar";
 
 function App() {
   const state = useSelector((state: RootState) => state);
-
+  console.log(state);
   const theme = useMemo(
     () =>
       createTheme(themeSettings(state.theme.isDarkTheme ? "dark" : "light")),

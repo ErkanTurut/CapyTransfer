@@ -5,9 +5,14 @@ import App from "./App";
 //styles
 import "./theme/styles.scss";
 import "@rainbow-me/rainbowkit/styles.css";
+import { useTheme } from "@mui/material";
 
 //wallet
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import {
+  RainbowKitProvider,
+  lightTheme,
+  darkTheme,
+} from "@rainbow-me/rainbowkit";
 import { WagmiConfig } from "wagmi";
 import wagmiClient, { chains } from "./components/wallet/wagmi.config";
 
@@ -17,7 +22,6 @@ import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 
 import store from "./state/store";
-
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
