@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ThemeState } from "@/types/states.types";
-import { toggleTheme } from "../theme/themeReducer";
+import { toggleTheme } from "../reducers/themeReducer";
 
 export const setThemeMode = createAsyncThunk(
   "theme/setThemeMode",

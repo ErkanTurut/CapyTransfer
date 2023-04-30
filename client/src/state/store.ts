@@ -3,7 +3,7 @@ import { combineReducers, createStore } from "redux";
 import storage from "redux-persist/lib/storage";
 
 //import authReducer from './reducers/authReducer';
-import themeReducer from "./theme/themeReducer";
+import themeReducer from "./reducers/themeReducer";
 
 import { configureStore } from "@reduxjs/toolkit";
 import {
@@ -17,6 +17,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import rootReducer from "@/state";
+import { type } from "os";
 
 const store = createStore(rootReducer);
 
