@@ -11,7 +11,6 @@ import NavBar from "./components/navBar";
 
 function App() {
   const state = useSelector((state: RootState) => state);
-  console.log(state);
   const theme = useMemo(
     () =>
       createTheme(themeSettings(state.theme.isDarkTheme ? "dark" : "light")),

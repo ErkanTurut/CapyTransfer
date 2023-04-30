@@ -1,5 +1,5 @@
 import Hero from "./hero";
-import FileZone from "./fileZone";
+import Filezone from "./fileZone";
 import {
   Paper,
   Box,
@@ -9,7 +9,6 @@ import {
   useTheme,
 } from "@mui/material";
 import FlexBetween from "@/components/utils/FlexBetween";
-import { Pix } from "@mui/icons-material";
 
 import "./header.css";
 
@@ -46,7 +45,7 @@ const Header = () => {
         md={4}
         sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
       >
-        <FileZone />
+        <Filezone />
       </Grid>
     </Grid>
   );

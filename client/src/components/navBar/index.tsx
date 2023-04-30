@@ -18,7 +18,7 @@ import {
 } from "@mui/icons-material";
 
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTheme } from "@/state/theme/themeReducer";
+import { toggleTheme } from "@/state/reducers/themeReducer";
 
 import {
   AppBar,

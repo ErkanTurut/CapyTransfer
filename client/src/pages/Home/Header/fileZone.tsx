@@ -14,31 +14,20 @@ import {
   styled,
 } from "@mui/material";
 
-import Dropzone from "@/components/fileZone";
-import { useSelector } from "react-redux/es/exports";
+import { useSelector, useDispatch } from "react-redux/es/exports";
 import { RootState } from "@/state";
-import FlexBetween from "@/components/utils/FlexBetween";
-import { next } from "@/state/fileZone/fileZoneReducer";
+import { filezoneStepperActions } from "@/state/reducers/filezoneStepperReducer";
+import fileZoneComponents from "@/components/fileZone";
+import {
+  KeyboardArrowRightRounded,
+  KeyboardArrowLeftRounded,
+  SendRounded,
+} from "@mui/icons-material";
 
-const fileZone = () => {
+const Filezone = () => {
   const state = useSelector((state: RootState) => state);
-  const fileZoneComponents = [
-    {
-      key: 1,
-      component: <Dropzone />,
-      label: "Upload",
-    },
-    {
-      key: 2,
-      component: <Dropzone />,
-      label: "Settings",
-    },
-    {
-      key: 3,
-      component: <Dropzone />,
-      label: "Send",
-    },
-  ];
+  const dispatch = useDispatch();
+
   return (
     <Box
       sx={{
@@ -61,7 +50,7 @@ const fileZone = () => {
         }}
       >
         <CardContent sx={{ height: 300 }}>
-          <Dropzone />
+          {fileZoneComponents[state.filezoneStepper.step].component}
         </CardContent>
         <CardActions
           sx={{
@@ -70,23 +59,60 @@ const fileZone = () => {
             justifyContent: "space-between",
           }}
         >
-          <Button size="small" variant="outlined" color="neutral">
+          <Button
+            size="small"
+            variant="outlined"
+            color="neutral"
+            onClick={() => dispatch(filezoneStepperActions.decrement())}
+            disabled={state.filezoneStepper.step === 0}
+            startIcon={<KeyboardArrowLeftRounded />}
+          >
             back
           </Button>
-          <Stepper alternativeLabel activeStep={1}>
-            <Step key={1} completed={false}>
-              <StepLabel>Upload</StepLabel>
-            </Step>
-            <Step key={2}>
-              <StepLabel>Settings</StepLabel>
-            </Step>
-            <Step key={3}>
-              <StepLabel>Send</StepLabel>
-            </Step>
+          <Stepper activeStep={state.filezoneStepper.step}>
+            {fileZoneComponents.map((component, i) => (
+              <Step key={i}>
+                <StepLabel
+                  sx={{
+                    "&:hover": {
+                      cursor: "pointer",
+                    },
+                  }}
+                  onClick={() => {
+                    dispatch(
+                      filezoneStepperActions.set({
+                        step: i,
+                        length: fileZoneComponents.length - 1,
+                      })
+                    );
+                  }}
+                ></StepLabel>
+              </Step>
+            ))}
           </Stepper>
 
-          <Button size="small" variant="contained" color="primary">
-            next
+          <Button
+            size="small"
+            variant="contained"
+            color="primary"
+            onClick={() =>
+              dispatch(
+                filezoneStepperActions.increment({
+                  length: fileZoneComponents.length - 1,
+                })
+              )
+            }
+            endIcon={
+              state.filezoneStepper.step === fileZoneComponents.length - 1 ? (
+                <SendRounded />
+              ) : (
+                <KeyboardArrowRightRounded />
+              )
+            }
+          >
+            {state.filezoneStepper.step === fileZoneComponents.length - 1
+              ? "Send"
+              : "Next"}
           </Button>
         </CardActions>
       </Card>
@@ -94,4 +120,4 @@ const fileZone = () => {
   );
 };
 
-export default fileZone;
+export default Filezone;
