@@ -13,11 +13,17 @@ import {
 } from "@mui/material";
 import { FileUploadRounded } from "@mui/icons-material";
 import "./style.css";
+import { useSelector, useDispatch } from "react-redux/es/exports";
+import { RootState } from "@/state";
+import { filesActions } from "@/state/reducers/filesReducer";
+
 const Dropzone = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state: RootState) => state);
   const onDrop = useCallback((acceptedFiles: any[]) => {
-    console.log(acceptedFiles);
-    // Do something with the files
+    dispatch(filesActions.add(acceptedFiles));
   }, []);
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -25,23 +31,10 @@ const Dropzone = () => {
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: "center",
+    height: "100%",
     color: theme.palette.text.secondary,
     boxShadow: "none",
     width: "100%",
-  }));
-
-  const Shadow = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    boxShadow: "none",
-    textAlign: "center",
-    width: "100%",
-    background:
-      "linear-gradient(0deg, rgba(171,171,171,1) 0%, rgba(0,212,255,0) 100%)",
-    position: "sticky",
-    bottom: 0,
-
-    display: "block",
   }));
 
   const items = [
@@ -100,27 +93,28 @@ const Dropzone = () => {
           )}
         </Box>
       </Box>
-      <Stack
-        className="custom-scrollbar"
-        divider={<Divider flexItem />}
-        spacing={0.5}
-        sx={{
-          width: "100%",
-          maxHeight: 150,
-          minHeight: 80,
-          display: "flex",
-          overflowY: "auto",
-          overflowX: "hidden",
-          border: 2,
-          borderColor: "neutral.light",
-          borderRadius: 1,
-          padding: 0.5,
-        }}
-      >
-        {items.map((item) => (
-          <Item key={item.id}>{item.name}</Item>
-        ))}
-      </Stack>
+      {state.files.files.length > 0 && (
+        <Stack
+          className="custom-scrollbar"
+          divider={<Divider flexItem />}
+          spacing={0.5}
+          sx={{
+            width: "100%",
+            maxHeight: 150,
+            display: "flex",
+            overflowY: "auto",
+            overflowX: "hidden",
+            border: 2,
+            borderColor: "neutral.light",
+            borderRadius: 1,
+            padding: 0.5,
+          }}
+        >
+          {state.files.files.map((file, i) => (
+            <Item key={i}>{file.name}</Item>
+          ))}
+        </Stack>
+      )}
     </FlexBetween>
   );
 };
