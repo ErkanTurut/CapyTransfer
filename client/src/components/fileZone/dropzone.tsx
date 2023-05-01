@@ -92,6 +92,7 @@ const Dropzone = () => {
             </Typography>
           )}
         </Box>
+        {test}
       </Box>
       {state.files.files.length > 0 && (
         <Stack
