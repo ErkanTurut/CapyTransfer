@@ -73,6 +73,7 @@ const Dropzone = () => {
           borderRadius: 1,
         }}
       >
+        <></>
         <input {...getInputProps()} />
         <Box
           sx={{
