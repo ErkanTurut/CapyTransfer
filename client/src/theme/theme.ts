@@ -150,6 +150,13 @@ export const themeSettings = (mode: ThemeType) => {
           disableElevation: true,
         },
       },
+      MuiIconButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: 8,
+          },
+        },
+      },
 
       //make background blur
       MuiAppBar: {
