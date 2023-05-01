@@ -19,11 +19,11 @@ const Header = () => {
     <Grid
       container
       direction={{ xs: "column", sm: "row" }}
-      sx={{ justifyContent: "center", alignItems: "center", gap: "0.5rem" }}
+      sx={{ justifyContent: "center", alignItems: "center", gap: 4 }}
     >
       <Grid
         item
-        xs={5}
+        xs={9}
         sm={9}
         md={4}
         sx={{
@@ -32,7 +32,7 @@ const Header = () => {
           alignItems: "flex-start",
           textAlign: "left",
           flexDirection: "column",
-          gap: "0.5rem",
+          gap: 2,
           order: { xs: 1, md: 0 },
         }}
       >
@@ -40,7 +40,7 @@ const Header = () => {
       </Grid>
       <Grid
         item
-        xs={4}
+        xs={9}
         sm={9}
         md={4}
         sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}

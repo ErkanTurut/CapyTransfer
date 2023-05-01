@@ -123,10 +123,7 @@ const NavBar = () => {
               <FlexBetween gap="0.2rem">
                 <WalletConnectButton />
 
-                <IconButton
-                  onClick={() => dispatch(toggleTheme())}
-                  sx={{ borderRadius: "8px" }}
-                >
+                <IconButton onClick={() => dispatch(toggleTheme())}>
                   {theme.palette.mode === "dark" ? <LightMode /> : <DarkMode />}
                 </IconButton>
               </FlexBetween>
