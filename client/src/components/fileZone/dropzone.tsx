@@ -9,19 +9,20 @@ import {
   Grid,
   styled,
   Stack,
+  IconButton,
   Divider,
 } from "@mui/material";
-import { FileUploadRounded } from "@mui/icons-material";
+import { FileUploadRounded, DeleteRounded } from "@mui/icons-material";
 import "./style.css";
 import { useSelector, useDispatch } from "react-redux/es/exports";
 import { RootState } from "@/state";
-import { filesActions } from "@/state/reducers/filesReducer";
+import { uploadFile, removeFile } from "@/state/reducers/filesReducer";
 
 const Dropzone = () => {
   const dispatch = useDispatch();
   const state = useSelector((state: RootState) => state);
   const onDrop = useCallback((acceptedFiles: any[]) => {
-    dispatch(filesActions.add(acceptedFiles));
+    dispatch(uploadFile(acceptedFiles));
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
@@ -31,21 +32,14 @@ const Dropzone = () => {
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: "center",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
     height: "100%",
     color: theme.palette.text.secondary,
     boxShadow: "none",
     width: "100%",
   }));
-
-  const items = [
-    { id: 1, name: "Item 1" },
-    { id: 2, name: "Item 2" },
-    { id: 3, name: "Item 3" },
-    { id: 4, name: "Item 4" },
-    { id: 5, name: "Item 5" },
-    { id: 6, name: "Item 6" },
-    { id: 7, name: "Item 7" },
-  ];
 
   return (
     <FlexBetween
@@ -112,7 +106,30 @@ const Dropzone = () => {
           }}
         >
           {state.files.files.map((file, i) => (
-            <Item key={i}>{file.name}</Item>
+            <Item key={i}>
+              <FlexBetween sx={{ gap: 2 }}>
+                <Typography variant="caption">{file.size}</Typography>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    overflowWrap: "normal",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    maxWidth: 150,
+                  }}
+                >
+                  sdsqdsqdsqdsdfsdfsdfsdfqsdqsdqsdsdfsdfsdfssdfsdfsdfsdfsdfd
+                </Typography>
+              </FlexBetween>
+
+              <IconButton
+                size="small"
+                color="error"
+                onClick={() => dispatch(removeFile(file.id))}
+              >
+                <DeleteRounded />
+              </IconButton>
+            </Item>
           ))}
         </Stack>
       )}
