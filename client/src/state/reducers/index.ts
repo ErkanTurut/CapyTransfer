@@ -1,4 +1,4 @@
 import filezoneStepperReducer from "./filezoneStepperReducer";
 import themeReducer from "./themeReducer";
-import filesSlice from "./filesReducer";
-export { filezoneStepperReducer, themeReducer, filesSlice };
+import uploadFilesSlice from "./filesReducer";
+export { filezoneStepperReducer, themeReducer, uploadFilesSlice };
