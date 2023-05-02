@@ -1,9 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import {
-  filezoneStepperReducer,
-  themeReducer,
-  uploadFilesSlice,
-} from "./reducers";
+import { themeReducer, fileszoneSlice } from "./reducers";
 import storage from "redux-persist/lib/storage";
 
 import {
@@ -24,8 +20,7 @@ const persistConfig = {
 };
 const rootReducer = combineReducers({
   theme: persistReducer(persistConfig, themeReducer),
-  filezoneStepper: filezoneStepperReducer,
-  files: uploadFilesSlice,
+  fileszone: fileszoneSlice,
   //auth: authReducer,
 });
 
