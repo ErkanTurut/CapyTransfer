@@ -1,6 +1,6 @@
 import Dropzone from "./dropzone";
-
-const fileZoneComponents = [
+import { ComponentType } from "@/types/components.types";
+const fileZoneComponents: ComponentType[] = [
   {
     component: <Dropzone />,
     label: "Upload",

@@ -16,11 +16,18 @@ import { FileUploadRounded, DeleteRounded } from "@mui/icons-material";
 import "./style.css";
 import { useSelector, useDispatch } from "react-redux/es/exports";
 import { RootState } from "@/state";
-import { uploadFile, removeFile } from "@/state/reducers/filesReducer";
+import {
+  uploadFile,
+  removeFile,
+  incrementStep,
+  decrementStep,
+  setStep,
+} from "@/state/reducers/fileszoneReducer";
 
 const Dropzone = () => {
   const dispatch = useDispatch();
   const state = useSelector((state: RootState) => state);
+
   const onDrop = useCallback((acceptedFiles: any[]) => {
     dispatch(uploadFile(acceptedFiles));
   }, []);
@@ -88,7 +95,7 @@ const Dropzone = () => {
           )}
         </Box>
       </Box>
-      {state.files.files.length > 0 && (
+      {state.fileszone.upload.files.length > 0 && (
         <Stack
           className="custom-scrollbar"
           divider={<Divider flexItem />}
@@ -105,7 +112,7 @@ const Dropzone = () => {
             padding: 0.5,
           }}
         >
-          {state.files.files.map((file, i) => (
+          {state.fileszone.upload.files.map((file, i) => (
             <Item key={i}>
               <FlexBetween sx={{ gap: 2 }}>
                 <Typography variant="caption">{file.size}</Typography>
@@ -118,7 +125,7 @@ const Dropzone = () => {
                     maxWidth: 150,
                   }}
                 >
-                  sdsqdsqdsqdsdfsdfsdfsdfqsdqsdqsdsdfsdfsdfssdfsdfsdfsdfsdfd
+                  {file.name}
                 </Typography>
               </FlexBetween>
 

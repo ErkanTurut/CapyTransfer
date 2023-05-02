@@ -9,10 +9,10 @@ const hero = () => {
         variant="h2"
         component="h1"
       >
-        Distributed transfer
+        Stronger, Smarter, Better !
       </Typography>
       <Typography variant="body1">
-        Dransfer is a file transfer system using the IPFS protocol. This allows
+        Capy is a file transfer system using the IPFS protocol. This allows
         efficient distribution of large volumes of immutable, fast and optimized
         data.
       </Typography>

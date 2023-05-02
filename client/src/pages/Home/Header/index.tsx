@@ -25,7 +25,7 @@ const Header = () => {
         item
         xs={9}
         sm={9}
-        md={4}
+        md={5}
         sx={{
           display: "flex",
           justifyContent: "center",

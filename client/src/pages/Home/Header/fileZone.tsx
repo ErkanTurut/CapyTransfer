@@ -16,8 +16,12 @@ import {
 
 import { useSelector, useDispatch } from "react-redux/es/exports";
 import { RootState } from "@/state";
-import { filezoneStepperActions } from "@/state/reducers/filezoneStepperReducer";
 import fileZoneComponents from "@/components/fileZone";
+import {
+  incrementStep,
+  decrementStep,
+  setStep,
+} from "@/state/reducers/fileszoneReducer";
 import {
   KeyboardArrowRightRounded,
   KeyboardArrowLeftRounded,
@@ -27,7 +31,7 @@ import {
 const Filezone = () => {
   const state = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
-
+  console.log(state);
   return (
     <Box
       sx={{
@@ -50,7 +54,7 @@ const Filezone = () => {
         }}
       >
         <CardContent sx={{ height: 300 }}>
-          {fileZoneComponents[state.filezoneStepper.step].component}
+          {fileZoneComponents[state.fileszone.stepper.step].component}
         </CardContent>
         <CardActions
           sx={{
@@ -63,13 +67,13 @@ const Filezone = () => {
             size="small"
             variant="outlined"
             color="neutral"
-            onClick={() => dispatch(filezoneStepperActions.decrement())}
-            disabled={state.filezoneStepper.step === 0}
+            onClick={() => dispatch(decrementStep())}
+            disabled={state.fileszone.stepper.step === 0}
             startIcon={<KeyboardArrowLeftRounded />}
           >
             back
           </Button>
-          <Stepper activeStep={state.filezoneStepper.step}>
+          <Stepper activeStep={state.fileszone.stepper.step}>
             {fileZoneComponents.map((component, i) => (
               <Step key={i}>
                 <StepLabel
@@ -80,7 +84,7 @@ const Filezone = () => {
                   }}
                   onClick={() => {
                     dispatch(
-                      filezoneStepperActions.set({
+                      setStep({
                         step: i,
                         length: fileZoneComponents.length - 1,
                       })
@@ -97,20 +101,20 @@ const Filezone = () => {
             color="primary"
             onClick={() =>
               dispatch(
-                filezoneStepperActions.increment({
+                incrementStep({
                   length: fileZoneComponents.length - 1,
                 })
               )
             }
             endIcon={
-              state.filezoneStepper.step === fileZoneComponents.length - 1 ? (
+              state.fileszone.stepper.step === fileZoneComponents.length - 1 ? (
                 <SendRounded />
               ) : (
                 <KeyboardArrowRightRounded />
               )
             }
           >
-            {state.filezoneStepper.step === fileZoneComponents.length - 1
+            {state.fileszone.stepper.step === fileZoneComponents.length - 1
               ? "Send"
               : "Next"}
           </Button>
