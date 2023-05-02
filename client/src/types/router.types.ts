@@ -1,8 +1,8 @@
-export interface routerType {
+export interface RouterType {
   title: string;
   path: string;
   component: JSX.Element;
-  children?: routerType[];
+  children?: RouterType[];
   icon?: any;
   show: boolean;
 }
