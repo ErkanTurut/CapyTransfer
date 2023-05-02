@@ -1,9 +1,9 @@
-import { routerType } from "../types/router.types";
+import { RouterType } from "../types/router.types";
 import About from "../pages/About";
 import Home from "../pages/Home";
 import Transfers from "../pages/Transfers";
 
-const pagesData: routerType[] = [
+const pagesData: RouterType[] = [
   {
     path: "/",
     component: <Home />,
