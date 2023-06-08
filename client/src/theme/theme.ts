@@ -15,14 +15,14 @@ export const themeSettings = (mode: ThemeType) => {
         ? {
             // palette values for dark mode
             primary: {
-              dark: colorsPalette.primary[300],
+              dark: colorsPalette.primary[500],
               main: colorsPalette.primary[400],
-              light: colorsPalette.primary[800],
+              light: colorsPalette.primary[50],
             },
             secondary: {
-              dark: colorsPalette.secondary[400],
-              main: colorsPalette.secondary[500],
-              light: colorsPalette.secondary[800],
+              dark: colorsPalette.secondary[500],
+              main: colorsPalette.secondary[400],
+              light: colorsPalette.secondary[50],
             },
             neutral: {
               dark: colorsPalette.grey[200],
@@ -52,13 +52,13 @@ export const themeSettings = (mode: ThemeType) => {
         : {
             // palette values for light mode
             primary: {
-              dark: colorsPalette.primary[700],
+              dark: colorsPalette.primary[500],
               main: colorsPalette.primary[400],
               light: colorsPalette.primary[50],
             },
             secondary: {
-              dark: colorsPalette.secondary[700],
-              main: colorsPalette.secondary[500],
+              dark: colorsPalette.secondary[500],
+              main: colorsPalette.secondary[400],
               light: colorsPalette.secondary[50],
             },
             text: {

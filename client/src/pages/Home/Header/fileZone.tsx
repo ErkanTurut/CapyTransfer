@@ -31,7 +31,6 @@ import {
 const Filezone = () => {
   const state = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
-  console.log(state);
   return (
     <Box
       sx={{
