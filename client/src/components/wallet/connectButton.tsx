@@ -7,7 +7,9 @@ import {
   useAccountModal,
   useChainModal,
 } from "@rainbow-me/rainbowkit";
+import { useAuth0 } from "@auth0/auth0-react";
 export const WalletConnectButton = () => {
+  const { loginWithRedirect } = useAuth0();
   return (
     <ConnectButton.Custom>
       {({

@@ -20,7 +20,6 @@ import wagmiClient, { chains } from "./components/wallet/wagmi.config";
 import { Provider } from "react-redux";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
-
 import store from "./state/store";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
