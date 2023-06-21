@@ -18,21 +18,4 @@ export class AppController {
   getHello() {
     return this.appService.getHello();
   }
-
-  @Post('upload')
-  @UseInterceptors(
-    FileInterceptor('file', {
-      storage: diskStorage({
-        destination: './files',
-        filename: (req, file, cb) => {
-          console.log('file : ', file);
-          cb(null, file.originalname);
-        },
-      }),
-    }),
-  )
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log('file : ', file);
-    return 'ok';
-  }
 }
