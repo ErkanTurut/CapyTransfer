@@ -6,7 +6,6 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const port = parseInt(configService.get('PORT'));
 
-  app.setGlobalPrefix('/api/v1');
   await app.listen(port);
 }
 bootstrap();

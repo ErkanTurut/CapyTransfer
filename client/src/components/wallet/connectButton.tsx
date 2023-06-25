@@ -9,7 +9,7 @@ import {
 } from "@rainbow-me/rainbowkit";
 import { useAuth0 } from "@auth0/auth0-react";
 export const WalletConnectButton = () => {
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
   return (
     <ConnectButton.Custom>
       {({
@@ -42,24 +42,27 @@ export const WalletConnectButton = () => {
             })}
           >
             {(() => {
-              if (!connected) {
-                return (
-                  <Button variant="contained" onClick={openConnectModal}>
-                    Connect wallet
-                  </Button>
-                );
-              }
-              if (chain.unsupported) {
+              if (!isAuthenticated) {
                 return (
                   <Button
                     variant="contained"
-                    onClick={openChainModal}
-                    type="button"
+                    onClick={() => loginWithRedirect()}
                   >
-                    Wrong network
+                    Login
                   </Button>
                 );
               }
+              // if (chain.unsupported) {
+              //   return (
+              //     <Button
+              //       variant="contained"
+              //       onClick={openChainModal}
+              //       type="button"
+              //     >
+              //       Wrong network
+              //     </Button>
+              //   );
+              // }
               return (
                 <FlexBetween sx={{ gap: 1 }}>
                   {/* <Button
@@ -92,9 +95,13 @@ export const WalletConnectButton = () => {
                   <Button
                     variant="outlined"
                     color="neutral"
-                    onClick={openAccountModal}
+                    onClick={() =>
+                      logout({
+                        logoutParams: { returnTo: window.location.origin },
+                      })
+                    }
                   >
-                    {account.displayName}
+                    Logout
                   </Button>
                 </FlexBetween>
               );
