@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, useNavigate } from "react-router-dom";
 import Router from "./routes/router";
 import { RootState } from "@/state";
 
@@ -8,6 +8,7 @@ import { CssBaseline, ThemeProvider, Container } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme/theme";
 import NavBar from "./components/navBar";
+import { ClerkProvider } from "@clerk/clerk-react";
 
 function App() {
   const state = useSelector((state: RootState) => state);
@@ -16,7 +17,7 @@ function App() {
       createTheme(themeSettings(state.theme.isDarkTheme ? "dark" : "light")),
     [state]
   );
-
+  const navigate = useNavigate();
   return (
     <div className="App">
       <>

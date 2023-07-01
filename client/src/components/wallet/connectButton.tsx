@@ -8,6 +8,7 @@ import {
   useChainModal,
 } from "@rainbow-me/rainbowkit";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useSignIn } from "@clerk/clerk-react";
 export const WalletConnectButton = () => {
   const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
   return (

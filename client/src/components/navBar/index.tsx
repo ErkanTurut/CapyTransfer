@@ -6,7 +6,7 @@ import pagesData from "../../routes/pagesData";
 import { WalletConnectButton } from "../wallet/connectButton";
 import NavDrawer from "./navDrawer";
 import CapyIcon from "../../assets/logo/CapyIcon";
-
+import { SignInButton } from "@clerk/clerk-react";
 import {
   Menu,
   DarkMode,
@@ -122,7 +122,7 @@ const NavBar = () => {
             <>
               <FlexBetween gap="0.2rem">
                 <WalletConnectButton />
-
+                <SignInButton />
                 <IconButton onClick={() => dispatch(toggleTheme())}>
                   {theme.palette.mode === "dark" ? <LightMode /> : <DarkMode />}
                 </IconButton>
